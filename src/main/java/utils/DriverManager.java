@@ -54,7 +54,7 @@ public class DriverManager {
         sauceOptions.setCapability("username", getConfig().getString("saucelabs.username"));
         sauceOptions.setCapability("access_key", getConfig().getString("saucelabs.access_key"));
         sauceOptions.setCapability("name", testName);
-        sauceOptions.setCapability("browserVersion", "latest");
+        sauceOptions.setCapability("browserVersion", "108");
         return sauceOptions;
     }
 

@@ -1,6 +1,6 @@
 package page_objects;
 
-import com.github.javafaker.Faker;
+import lombok.Getter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,55 +19,28 @@ public class AddStudentPage {
     private final WebDriver driver = DriverManager.getInstance();
     private final WebDriverWait webDriverWait;
 
-    public WebElement getNameField() {
-        return nameField;
-    }
-
-    public WebElement getNameFieldHelp() {
-        return nameFieldHelp;
-    }
-
-    public WebElement getGenderDropDown() {
-        return genderDropDown;
-    }
-
-    public WebElement getGenderFieldHelp() {
-        return genderFieldHelp;
-    }
-
-    public WebElement getEmailField() {
-        return emailField;
-    }
-
-    public WebElement getEmailFieldHelp() {
-        return emailFieldHelp;
-    }
-
-    public WebElement getSubmitButton() {
-        return submitButton;
-    }
 
     public AddStudentPage() {
-        this.webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        this.webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(10));
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(how = How.ID, using = "name")
+    @Getter @FindBy(how = How.ID, using = "name")
     WebElement nameField;
-    @FindBy(how = How.ID, using = "name_help")
+    @Getter @FindBy(how = How.ID, using = "name_help")
     WebElement nameFieldHelp;
 
-    @FindBy(how = How.ID, using = "gender")
+    @Getter @FindBy(how = How.ID, using = "gender")
     WebElement genderDropDown;
-    @FindBy(how = How.ID, using = "gender_help")
+    @Getter @FindBy(how = How.ID, using = "gender_help")
     WebElement genderFieldHelp;
 
-    @FindBy(how = How.ID, using = "email")
+    @Getter @FindBy(how = How.ID, using = "email")
     WebElement emailField;
-    @FindBy(how = How.ID, using = "email_help")
+    @Getter @FindBy(how = How.ID, using = "email_help")
     WebElement emailFieldHelp;
 
-    @FindBy(how = How.XPATH, using = "//div[@class='ant-form-item-control-input-content']//button")
+    @Getter @FindBy(how = How.XPATH, using = "//div[@class='ant-form-item-control-input-content']//button")
     WebElement submitButton;
 
     public void waitAndSetValueForNameField(String name) {

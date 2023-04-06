@@ -8,15 +8,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestResult;
-
 import java.net.MalformedURLException;
 import java.net.URL;
-
 import static utils.ConfigHelper.getConfig;
 
 public class DriverManager {
     private static final ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
     public static String testName;
+
     // Singleton pattern
     public static WebDriver getInstance() {
         if (driverThreadLocal.get() == null) {
@@ -37,7 +36,7 @@ public class DriverManager {
     private static RemoteWebDriver configureRemote() {
         URL url = null;
         try {
-            url = new URL("url");
+            url = new URL(getConfig().getString("saucelabs.URL"));
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
@@ -52,8 +51,8 @@ public class DriverManager {
 
     public static MutableCapabilities configureCapabilities() {
         MutableCapabilities sauceOptions = new MutableCapabilities();
-        sauceOptions.setCapability("username", "");
-        sauceOptions.setCapability("access_key", "");
+        sauceOptions.setCapability("username", getConfig().getString("saucelabs.username"));
+        sauceOptions.setCapability("access_key", getConfig().getString("saucelabs.access_key"));
         sauceOptions.setCapability("name", testName);
         sauceOptions.setCapability("browserVersion", "latest");
         return sauceOptions;

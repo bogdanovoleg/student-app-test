@@ -96,9 +96,7 @@ public class StudentAppTest {
         assertEquals(notifications.getText(notifications.getNotificationMessageElement()), "Student successfully added");
         assertEquals(notifications.getText(notifications.getNotificationDescriptionElement()), name + " was added to the system");
 
-        notifications.getPopUpCloseButton().click();
-        assertTrue(driverWait.until(ExpectedConditions.invisibilityOf(notifications.getPopUpCloseButton())));
-
+        notifications.waitAndClickOnPopUpCloseButton();
 
     }
 }

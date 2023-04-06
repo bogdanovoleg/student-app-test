@@ -1,5 +1,6 @@
 package page_objects;
 
+import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,9 +20,9 @@ public class AllStudentsPage {
         this.webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(5));
         PageFactory.initElements(driver, this);
     }
-    @FindBy(how = How.XPATH, using = "//div[@class='ant-table-title']//button")
+    @Getter @FindBy(how = How.XPATH, using = "//div[@class='ant-table-title']//button")
     WebElement addStudentButton;
-    @FindBy(how = How.XPATH, using = "//button[@class='ant-pagination-item-link']//span[@aria-label='right']")
+    @Getter @FindBy(how = How.XPATH, using = "//button[@class='ant-pagination-item-link']//span[@aria-label='right']")
     WebElement nextPageButton;
     public void waitAndClickOnAddStudentButton() {
         webDriverWait.until(elementToBeClickable(addStudentButton));
